@@ -5,10 +5,10 @@ import (
 )
 
 // Get Input Details
-func (z *Zencoder) GetInputDetails(id int32) (*InputMediaFile, error) {
+func (z *Zencoder) GetInputDetails(id string) (*InputMediaFile, error) {
 	var details InputMediaFile
 
-	if err := z.getBody(fmt.Sprintf("inputs/%d.json", id), &details); err != nil {
+	if err := z.getBody(fmt.Sprintf("inputs/%s.json", id), &details); err != nil {
 		return nil, err
 	}
 
@@ -16,10 +16,10 @@ func (z *Zencoder) GetInputDetails(id int32) (*InputMediaFile, error) {
 }
 
 // Input Progress
-func (z *Zencoder) GetInputProgress(id int32) (*FileProgress, error) {
+func (z *Zencoder) GetInputProgress(id string) (*FileProgress, error) {
 	var details FileProgress
 
-	if err := z.getBody(fmt.Sprintf("inputs/%d/progress.json", id), &details); err != nil {
+	if err := z.getBody(fmt.Sprintf("inputs/%s/progress.json", id), &details); err != nil {
 		return nil, err
 	}
 

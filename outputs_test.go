@@ -49,7 +49,7 @@ func TestGetOutputDetails(t *testing.T) {
 	zc := NewZencoder("abc")
 	zc.BaseUrl = srv.URL
 
-	details, err := zc.GetOutputDetails(123)
+	details, err := zc.GetOutputDetails("123")
 	if err != nil {
 		t.Fatal("Expected no error", err)
 	}
@@ -85,7 +85,7 @@ func TestGetOutputDetails(t *testing.T) {
 	if details.Height != 352 {
 		t.Fatal("Expected 352, got", details.Height)
 	}
-	if details.Id != 13339 {
+	if details.Id != "13339" {
 		t.Fatal("Expected 13339, got", details.Id)
 	}
 	if details.Label != nil {
@@ -115,7 +115,7 @@ func TestGetOutputDetails(t *testing.T) {
 
 	expectedStatus = http.StatusInternalServerError
 
-	details, err = zc.GetOutputDetails(123)
+	details, err = zc.GetOutputDetails("123")
 	if err == nil {
 		t.Fatal("Expected error")
 	}
@@ -127,7 +127,7 @@ func TestGetOutputDetails(t *testing.T) {
 	expectedStatus = http.StatusOK
 	returnBody = false
 
-	details, err = zc.GetOutputDetails(123)
+	details, err = zc.GetOutputDetails("123")
 	if err == nil {
 		t.Fatal("Expected error")
 	}
@@ -139,7 +139,7 @@ func TestGetOutputDetails(t *testing.T) {
 	srv.Close()
 	returnBody = true
 
-	details, err = zc.GetOutputDetails(123)
+	details, err = zc.GetOutputDetails("123")
 	if err == nil {
 		t.Fatal("Expected error")
 	}
@@ -177,7 +177,7 @@ func TestGetOutputProgress(t *testing.T) {
 	zc := NewZencoder("abc")
 	zc.BaseUrl = srv.URL
 
-	progress, err := zc.GetOutputProgress(123)
+	progress, err := zc.GetOutputProgress("123")
 	if err != nil {
 		t.Fatal("Expected no error", err)
 	}
@@ -204,7 +204,7 @@ func TestGetOutputProgress(t *testing.T) {
 
 	expectedStatus = http.StatusInternalServerError
 
-	progress, err = zc.GetOutputProgress(123)
+	progress, err = zc.GetOutputProgress("123")
 	if err == nil {
 		t.Fatal("Expected error")
 	}
@@ -216,7 +216,7 @@ func TestGetOutputProgress(t *testing.T) {
 	expectedStatus = http.StatusOK
 	returnBody = false
 
-	progress, err = zc.GetOutputProgress(123)
+	progress, err = zc.GetOutputProgress("123")
 	if err == nil {
 		t.Fatal("Expected error")
 	}
@@ -228,7 +228,7 @@ func TestGetOutputProgress(t *testing.T) {
 	srv.Close()
 	returnBody = true
 
-	progress, err = zc.GetOutputProgress(123)
+	progress, err = zc.GetOutputProgress("123")
 	if err == nil {
 		t.Fatal("Expected error")
 	}

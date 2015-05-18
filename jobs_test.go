@@ -40,7 +40,7 @@ func TestCreateJob(t *testing.T) {
 		t.Fatal("Expected a response")
 	}
 
-	if resp.Id != 1234 {
+	if resp.Id != "1234" {
 		t.Fatal("Expected Id=1234", resp.Id)
 	}
 
@@ -48,7 +48,7 @@ func TestCreateJob(t *testing.T) {
 		t.Fatal("Expected one output", len(resp.Outputs))
 	}
 
-	if resp.Outputs[0].Id != 4321 {
+	if resp.Outputs[0].Id != "4321" {
 		t.Fatal("Expected Id=4321", resp.Outputs[0].Id)
 	}
 
@@ -204,7 +204,7 @@ func TestListJobs(t *testing.T) {
 	if jobs[0].Job.PassThrough != nil {
 		t.Fatal("Expected nil, got", jobs[0].Job.PassThrough)
 	}
-	if jobs[0].Job.Id != 1 {
+	if jobs[0].Job.Id != "1" {
 		t.Fatal("Expected 1, got", jobs[0].Job.Id)
 	}
 	if jobs[0].Job.InputMediaFile.Format != "mpeg4" {
@@ -231,7 +231,7 @@ func TestListJobs(t *testing.T) {
 	if jobs[0].Job.InputMediaFile.Url != "s3://bucket/test.mp4" {
 		t.Fatal("Expected s3://bucket/test.mp4, got", jobs[0].Job.InputMediaFile.Url)
 	}
-	if jobs[0].Job.InputMediaFile.Id != 1 {
+	if jobs[0].Job.InputMediaFile.Id != "1" {
 		t.Fatal("Expected 1, got", jobs[0].Job.InputMediaFile.Id)
 	}
 	if jobs[0].Job.InputMediaFile.ErrorMessage != nil {
@@ -303,7 +303,7 @@ func TestListJobs(t *testing.T) {
 	if jobs[0].Job.OutputMediaFiles[0].Url != "http://s3.amazonaws.com/bucket/video.mp4" {
 		t.Fatal("Expected http://s3.amazonaws.com/bucket/video.mp4, got", jobs[0].Job.OutputMediaFiles[0].Url)
 	}
-	if jobs[0].Job.OutputMediaFiles[0].Id != 1 {
+	if jobs[0].Job.OutputMediaFiles[0].Id != "1" {
 		t.Fatal("Expected 1, got", jobs[0].Job.OutputMediaFiles[0].Id)
 	}
 	if jobs[0].Job.OutputMediaFiles[0].ErrorMessage != nil {
@@ -360,7 +360,7 @@ func TestListJobs(t *testing.T) {
 	if jobs[0].Job.Thumbnails[0].Url != "http://s3.amazonaws.com/bucket/video/frame_0000.png" {
 		t.Fatal("Expected http://s3.amazonaws.com/bucket/video/frame_0000.png, got", jobs[0].Job.Thumbnails[0].Url)
 	}
-	if jobs[0].Job.Thumbnails[0].Id != 1 {
+	if jobs[0].Job.Thumbnails[0].Id != "1" {
 		t.Fatal("Expected 1, got", jobs[0].Job.Thumbnails[0].Id)
 	}
 	if jobs[0].Job.State != "finished" {
@@ -491,7 +491,7 @@ func TestGetJobDetails(t *testing.T) {
 	zc := NewZencoder("abc")
 	zc.BaseUrl = srv.URL
 
-	details, err := zc.GetJobDetails(123)
+	details, err := zc.GetJobDetails("123")
 	if err != nil {
 		t.Fatal("Expected no error", err)
 	}
@@ -515,7 +515,7 @@ func TestGetJobDetails(t *testing.T) {
 	if details.Job.PassThrough != nil {
 		t.Fatal("Expected nil, got", details.Job.PassThrough)
 	}
-	if details.Job.Id != 1 {
+	if details.Job.Id != "1" {
 		t.Fatal("Expected 1, got", details.Job.Id)
 	}
 	if details.Job.Test != false {
@@ -549,7 +549,7 @@ func TestGetJobDetails(t *testing.T) {
 	if details.Job.InputMediaFile.Url != "s3://bucket/test.mp4" {
 		t.Fatal("Expected s3://bucket/test.mp4, got", details.Job.InputMediaFile.Url)
 	}
-	if details.Job.InputMediaFile.Id != 1 {
+	if details.Job.InputMediaFile.Id != "1" {
 		t.Fatal("Expected 1, got", details.Job.InputMediaFile.Id)
 	}
 	if details.Job.InputMediaFile.ErrorMessage != nil {
@@ -619,7 +619,7 @@ func TestGetJobDetails(t *testing.T) {
 	if details.Job.OutputMediaFiles[0].Url != "http://s3.amazonaws.com/bucket/video.mp4" {
 		t.Fatal("Expected http://s3.amazonaws.com/bucket/video.mp4, got", details.Job.OutputMediaFiles[0].Url)
 	}
-	if details.Job.OutputMediaFiles[0].Id != 1 {
+	if details.Job.OutputMediaFiles[0].Id != "1" {
 		t.Fatal("Expected 1, got", details.Job.OutputMediaFiles[0].Id)
 	}
 	if details.Job.OutputMediaFiles[0].ErrorMessage != nil {
@@ -676,12 +676,12 @@ func TestGetJobDetails(t *testing.T) {
 	if details.Job.Thumbnails[0].Url != "http://s3.amazonaws.com/bucket/video/frame_0000.png" {
 		t.Fatal("Expected http://s3.amazonaws.com/bucket/video/frame_0000.png, got", details.Job.Thumbnails[0].Url)
 	}
-	if details.Job.Thumbnails[0].Id != 1 {
+	if details.Job.Thumbnails[0].Id != "1" {
 		t.Fatal("Expected 1, got", details.Job.Thumbnails[0].Id)
 	}
 
 	expectedStatus = http.StatusNotFound
-	details, err = zc.GetJobDetails(123)
+	details, err = zc.GetJobDetails("123")
 	if err == nil {
 		t.Fatal("Expected error")
 	}
@@ -692,7 +692,7 @@ func TestGetJobDetails(t *testing.T) {
 
 	expectedStatus = http.StatusOK
 	returnBody = false
-	details, err = zc.GetJobDetails(123)
+	details, err = zc.GetJobDetails("123")
 	if err == nil {
 		t.Fatal("Expected error")
 	}
@@ -703,7 +703,7 @@ func TestGetJobDetails(t *testing.T) {
 
 	returnBody = false
 	srv.Close()
-	details, err = zc.GetJobDetails(123)
+	details, err = zc.GetJobDetails("123")
 	if err == nil {
 		t.Fatal("Expected error")
 	}
@@ -759,7 +759,7 @@ func TestGetJobProgress(t *testing.T) {
 	zc := NewZencoder("abc")
 	zc.BaseUrl = srv.URL
 
-	progress, err := zc.GetJobProgress(123)
+	progress, err := zc.GetJobProgress("123")
 	if err != nil {
 		t.Fatal("Expected no error", err)
 	}
@@ -774,7 +774,7 @@ func TestGetJobProgress(t *testing.T) {
 	if progress.JobProgress != 32.34567345 {
 		t.Fatal("Expected 32.34567345, got", progress.JobProgress)
 	}
-	if progress.InputProgress.Id != 1234 {
+	if progress.InputProgress.Id != "1234" {
 		t.Fatal("Expected 1234, got", progress.InputProgress.Id)
 	}
 	if progress.InputProgress.State != "finished" {
@@ -785,7 +785,7 @@ func TestGetJobProgress(t *testing.T) {
 		t.Fatal("Expected 2 outputs, got", len(progress.OutputProgress))
 	}
 
-	if progress.OutputProgress[0].Id != 4567 {
+	if progress.OutputProgress[0].Id != "4567" {
 		t.Fatal("Expected 4567, got", progress.OutputProgress[0].Id)
 	}
 	if progress.OutputProgress[0].State != "processing" {
@@ -802,7 +802,7 @@ func TestGetJobProgress(t *testing.T) {
 	}
 
 	expectedStatus = http.StatusNotFound
-	progress, err = zc.GetJobProgress(123)
+	progress, err = zc.GetJobProgress("123")
 	if err == nil {
 		t.Fatal("Expected error")
 	}
@@ -813,7 +813,7 @@ func TestGetJobProgress(t *testing.T) {
 
 	expectedStatus = http.StatusOK
 	returnBody = false
-	progress, err = zc.GetJobProgress(123)
+	progress, err = zc.GetJobProgress("123")
 	if err == nil {
 		t.Fatal("Expected error")
 	}
@@ -824,7 +824,7 @@ func TestGetJobProgress(t *testing.T) {
 
 	returnBody = true
 	srv.Close()
-	progress, err = zc.GetJobProgress(123)
+	progress, err = zc.GetJobProgress("123")
 	if err == nil {
 		t.Fatal("Expected error")
 	}
@@ -847,14 +847,14 @@ func TestResubmitJob(t *testing.T) {
 	zc := NewZencoder("abc")
 	zc.BaseUrl = srv.URL
 
-	err := zc.ResubmitJob(123)
+	err := zc.ResubmitJob("123")
 	if err != nil {
 		t.Fatal("Expected no error", err)
 	}
 
 	expectedStatus = http.StatusConflict
 
-	err = zc.ResubmitJob(123)
+	err = zc.ResubmitJob("123")
 	if err == nil {
 		t.Fatal("Expected error")
 	}
@@ -862,7 +862,7 @@ func TestResubmitJob(t *testing.T) {
 	expectedStatus = http.StatusOK
 	srv.Close()
 
-	err = zc.ResubmitJob(123)
+	err = zc.ResubmitJob("123")
 	if err == nil {
 		t.Fatal("Expected error")
 	}
@@ -881,14 +881,14 @@ func TestCancelJob(t *testing.T) {
 	zc := NewZencoder("abc")
 	zc.BaseUrl = srv.URL
 
-	err := zc.CancelJob(123)
+	err := zc.CancelJob("123")
 	if err != nil {
 		t.Fatal("Expected no error", err)
 	}
 
 	expectedStatus = http.StatusConflict
 
-	err = zc.CancelJob(123)
+	err = zc.CancelJob("123")
 	if err == nil {
 		t.Fatal("Expected error")
 	}
@@ -896,7 +896,7 @@ func TestCancelJob(t *testing.T) {
 	expectedStatus = http.StatusOK
 	srv.Close()
 
-	err = zc.CancelJob(123)
+	err = zc.CancelJob("123")
 	if err == nil {
 		t.Fatal("Expected error")
 	}
@@ -915,14 +915,14 @@ func TestFinishLiveJob(t *testing.T) {
 	zc := NewZencoder("abc")
 	zc.BaseUrl = srv.URL
 
-	err := zc.FinishLiveJob(123)
+	err := zc.FinishLiveJob("123")
 	if err != nil {
 		t.Fatal("Expected no error", err)
 	}
 
 	expectedStatus = http.StatusConflict
 
-	err = zc.FinishLiveJob(123)
+	err = zc.FinishLiveJob("123")
 	if err == nil {
 		t.Fatal("Expected error")
 	}
