@@ -250,19 +250,20 @@ type OutputSettings struct {
 }
 
 type EncodingSettings struct {
-	Input                string            `json:"input,omitempty"`                  // A S3, Cloud Files, GCS, FTP, FTPS, SFTP, or Aspera URL where we can download file to transcode.
-	LiveStream           bool              `json:"live_stream,omitempty"`            // Create a Live streaming job.
-	Outputs              []*OutputSettings `json:"outputs,omitempty"`                // An array or hash of output settings.
-	Region               string            `json:"region,omitempty"`                 // The region where a file is processed: US, Europe, Asia, or Australia.
-	Test                 bool              `json:"test,omitempty"`                   // Enable test mode ("Integration Mode") for a job.
-	Private              bool              `json:"private,omitempty"`                // Enable privacy mode for a job.
-	DownloadConnections  int32             `json:"download_connections,omitempty"`   // Utilize multiple, simultaneous connections for download acceleration (in some circumstances).
-	PassThrough          string            `json:"pass_through,omitempty"`           // Optional information to store alongside this job.
-	Mock                 bool              `json:"mock,omitempty"`                   // Send a mocked job request.
-	Grouping             string            `json:"grouping,omitempty"`               // A report grouping for this job.
-	AsperaTransferPolicy string            `json:"aspera_transfer_policy,omitempty"` // How to allocate available bandwidth for Aspera file transfers.
-	TransferMinimumRate  int32             `json:"transfer_minimum_rate,omitempty"`  // A targeted rate in Kbps for data transfer minimums.
-	TransferMaximumRate  int32             `json:"transfer_maximum_rate,omitempty"`  // A targeted rate in Kbps for data transfer maximums.
-	ExpectedMD5Checksum  string            `json:"expected_md5_checksum,omitempty"`  // The expected checksum of the input file.
-	Credentials          string            `json:"credentials,omitempty"`            // References saved credentials by a nickname.
+	Input                string                  `json:"input,omitempty"`                  // A S3, Cloud Files, GCS, FTP, FTPS, SFTP, or Aspera URL where we can download file to transcode.
+	LiveStream           bool                    `json:"live_stream,omitempty"`            // Create a Live streaming job.
+	Outputs              []*OutputSettings       `json:"outputs,omitempty"`                // An array or hash of output settings.
+	Region               string                  `json:"region,omitempty"`                 // The region where a file is processed: US, Europe, Asia, or Australia.
+	Test                 bool                    `json:"test,omitempty"`                   // Enable test mode ("Integration Mode") for a job.
+	Private              bool                    `json:"private,omitempty"`                // Enable privacy mode for a job.
+	DownloadConnections  int32                   `json:"download_connections,omitempty"`   // Utilize multiple, simultaneous connections for download acceleration (in some circumstances).
+	PassThrough          string                  `json:"pass_through,omitempty"`           // Optional information to store alongside this job.
+	Mock                 bool                    `json:"mock,omitempty"`                   // Send a mocked job request.
+	Grouping             string                  `json:"grouping,omitempty"`               // A report grouping for this job.
+	AsperaTransferPolicy string                  `json:"aspera_transfer_policy,omitempty"` // How to allocate available bandwidth for Aspera file transfers.
+	TransferMinimumRate  int32                   `json:"transfer_minimum_rate,omitempty"`  // A targeted rate in Kbps for data transfer minimums.
+	TransferMaximumRate  int32                   `json:"transfer_maximum_rate,omitempty"`  // A targeted rate in Kbps for data transfer maximums.
+	ExpectedMD5Checksum  string                  `json:"expected_md5_checksum,omitempty"`  // The expected checksum of the input file.
+	Credentials          string                  `json:"credentials,omitempty"`            // References saved credentials by a nickname.
+	Notifications        []*NotificationSettings `json:"notifications,omitempty"`          // Be notified when a job or output is complete.
 }
