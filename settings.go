@@ -46,6 +46,7 @@ type NotificationSettings struct {
 }
 
 type StreamSettings struct {
+	Source     string `json:"source,omitempty"`     // Specifies the label of a given source
 	Path       string `json:"path,omitempty"`       // Specifies the path to a stream manifest file
 	Bandwidth  int32  `json:"bandwidth,omitempty"`  // Specifies the bandwidth of a playlist stream
 	Resolution string `json:"resolution,omitempty"` // Specifies the resolution of a playlist stream
