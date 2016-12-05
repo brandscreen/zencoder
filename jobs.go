@@ -13,11 +13,23 @@ type FileProgress struct {
 }
 
 type JobProgress struct {
-	State          string          `json:"state,omitempty"`
+	State          JobState        `json:"state,omitempty"`
 	JobProgress    float64         `json:"progress,omitempty"`
 	InputProgress  *FileProgress   `json:"input,omitempty"`
 	OutputProgress []*FileProgress `json:"outputs,omitempty"`
 }
+
+type JobState string
+
+const (
+	JobStatePending    = JobState("pending")
+	JobStateWaiting    = JobState("waiting")
+	JobStateProcessing = JobState("processing")
+	JobStateAssigning  = JobState("assigning")
+	JobStateFinished   = JobState("finished")
+	JobStateCancelled  = JobState("cancelled")
+	JobStateFailed     = JobState("failed")
+)
 
 // Response from CreateJob
 type CreateJobResponse struct {
