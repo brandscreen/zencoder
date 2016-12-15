@@ -79,7 +79,6 @@ type OutputSettings struct {
 	GenerateMD5Checksum bool              `json:"generate_md5_checksum,omitempty"` // Generate an MD5 checksum of the output file.
 	ParallelUploadLimit int32             `json:"parallel_upload_limit,omitempty"` // The maximum number of simultaneous uploads to attempt.
 	Headers             map[string]string `json:"headers,omitempty"`               // HTTP headers to send with your file when we upload it.
-	FileSizeInBytes     int64             `json:"file_size_in_bytes,omitempty"`    // File size in bytes
 
 	// Format And Codecs
 	Format     string `json:"format,omitempty"`      // The output format to use.
