@@ -17,7 +17,7 @@ zencoder
 # Installation
 
 ```bash
-$ go get github.com/brandscreen/zencoder
+$ go get github.com/video-dev/zencoder
 ```
 
 # Usage
