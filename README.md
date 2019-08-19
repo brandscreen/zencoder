@@ -27,7 +27,7 @@ $ go get github.com/brandscreen/zencoder
 Ensure you have imported the zencoder package at the top of your source file.
 
 ```golang
-import "github.com/brandscreen/zencoder"
+import "github.com/video-dev/zencoder"
 ```
 
 ## Create a connection to Zencoder
